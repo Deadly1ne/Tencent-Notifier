@@ -5,6 +5,7 @@ import logging
 import time
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
+from datetime import datetime
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -103,13 +104,23 @@ class TencentScraper:
                     'number': c_number
                 })
             
+            # Post-processing: If no chapters have valid numbers (e.g. titles only), fallback to ID-based numbering
+            # This ensures series like id/657223 get notifications
+            has_valid_numbers = any(ch['number'] != -1.0 for ch in chapters)
+            if not has_valid_numbers and chapters:
+                logger.info(f"No chapter numbers found for {topic_url}. Falling back to ID-based numbering.")
+                for ch in chapters:
+                    try:
+                        ch['number'] = float(ch['id'])
+                    except ValueError:
+                        pass # Keep as -1.0 if ID is weird
+
             return {'chapters': chapters, 'series_info': series_info}
 
         except Exception as e:
             logger.error(f"Error fetching {topic_url}: {e}")
             return {'chapters': [], 'series_info': {}}
 
-from datetime import datetime
 if __name__ == "__main__":
     scraper = TencentScraper()
     res = scraper.fetch_chapters("https://ac.qq.com/Comic/comicInfo/id/657037")
