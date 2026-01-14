@@ -1,0 +1,13 @@
+{
+    "series": [
+        {
+            "url": "https://ac.qq.com/Comic/comicInfo/id/657037",
+            "alias": "Testing Series"
+        },
+        {
+            "url": "https://ac.qq.com/Comic/comicInfo/id/647701",
+            "alias": "Locked Series"
+        }
+    ],
+    "webhook_url": "https://discord.com/api/webhooks/1456503725576425683/YTkWgUArLTXbKufMxQJZdBFlQt64hhQ6Md_NjbQPkUIwBV4ZQEU4zotuExcv2S0DqlC2"
+}
