@@ -88,10 +88,14 @@ class StateManager:
             logger.error(f"Failed to save state: {e}")
 
     def get_series_state(self, url):
-        return self.state.get(url, {"last_chapter_number": -1.0})
+        # Return full state object, not just number
+        return self.state.get(url, {"last_chapter_number": -1.0, "tracking_type": "unknown"})
 
-    def update_series_state(self, url, last_chapter_number):
-        self.state[url] = {"last_chapter_number": last_chapter_number}
+    def update_series_state(self, url, last_chapter_number, tracking_type="number"):
+        self.state[url] = {
+            "last_chapter_number": last_chapter_number,
+            "tracking_type": tracking_type
+        }
 
 def main():
     # Load config
@@ -120,6 +124,7 @@ def main():
         result = scraper.fetch_chapters(url)
         current_chapters = result.get('chapters', [])
         series_info = result.get('series_info', {})
+        current_tracking_type = result.get('tracking_type', 'number')
         
         if not current_chapters:
             logger.warning(f"No chapters found for {alias}.")
@@ -127,9 +132,27 @@ def main():
 
         series_state = state_manager.get_series_state(url)
         last_number = series_state.get('last_chapter_number', -1.0)
+        stored_tracking_type = series_state.get('tracking_type', 'unknown')
+        
+        # State Migration / Conflict Resolution
+        if stored_tracking_type != 'unknown' and stored_tracking_type != current_tracking_type:
+            logger.warning(f"Tracking type mismatch for {alias}. Stored: {stored_tracking_type}, Current: {current_tracking_type}. Resetting state.")
+            last_number = -1.0
+        
+        # Legacy migration: If unknown, check for ID-like huge numbers
+        if stored_tracking_type == 'unknown':
+            if last_number > 50000 and current_tracking_type == 'number':
+                logger.warning(f"Legacy state migration: Detected high ID ({last_number}) but switching to number tracking. Resetting state.")
+                last_number = -1.0
         
         # Identify new chapters
         new_chapters = []
+        
+        # Calculate the actual max number from current fetch
+        current_max = -1.0
+        if current_chapters:
+            current_max = max(ch['number'] for ch in current_chapters)
+            
         max_number = last_number
         
         for ch in current_chapters:
@@ -141,8 +164,16 @@ def main():
         
         # If this is the first run (last_number is -1.0), do not notify all, just populate state
         if last_number == -1.0:
-            logger.info(f"First run for {alias}. Initializing state with last chapter {max_number}.")
-            state_manager.update_series_state(url, max_number)
+            logger.info(f"First run (or reset) for {alias}. Initializing state with last chapter {current_max} (Type: {current_tracking_type}).")
+            state_manager.update_series_state(url, current_max, current_tracking_type)
+            
+            # Feature Request: Notify for the latest chapter on first run/reset
+            # Find the chapter corresponding to current_max
+            latest_chapter = next((ch for ch in current_chapters if ch['number'] == current_max), None)
+            if latest_chapter:
+                logger.info(f"Sending initial notification for latest chapter of {alias}.")
+                notifier.send_notification(alias, latest_chapter, series_info)
+            
             continue
             
         if new_chapters:
@@ -159,7 +190,7 @@ def main():
 
         # Update state with the highest number found
         if max_number > last_number:
-            state_manager.update_series_state(url, max_number)
+            state_manager.update_series_state(url, max_number, current_tracking_type)
         
         # Rate limiting
         time.sleep(2)
