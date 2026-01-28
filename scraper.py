@@ -5,7 +5,6 @@ import logging
 import time
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
-from datetime import datetime
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -123,6 +122,7 @@ class TencentScraper:
             logger.error(f"Error fetching {topic_url}: {e}")
             return {'chapters': [], 'series_info': {}}
 
+from datetime import datetime
 if __name__ == "__main__":
     scraper = TencentScraper()
     res = scraper.fetch_chapters("https://ac.qq.com/Comic/comicInfo/id/657037")
