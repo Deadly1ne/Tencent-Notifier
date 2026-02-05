@@ -103,18 +103,16 @@ class TencentScraper:
                     'number': c_number
                 })
             
-            # Post-processing: Determine tracking type
-            has_valid_numbers = any(ch['number'] != -1.0 for ch in chapters)
-            tracking_type = "number"
-            
-            if not has_valid_numbers and chapters:
-                logger.info(f"No chapter numbers found for {topic_url}. Falling back to ID-based numbering.")
-                tracking_type = "id"
-                for ch in chapters:
-                    try:
-                        ch['number'] = float(ch['id'])
-                    except ValueError:
-                        pass # Keep as -1.0 if ID is weird
+            # Post-processing: Use ID-based tracking by default for reliability
+            # (as requested, to avoid issues with titles like '2024' or Chinese text)
+            tracking_type = "id"
+            for ch in chapters:
+                try:
+                    # Convert ID to float for consistent numeric comparison in StateManager
+                    ch['number'] = float(ch['id'])
+                except ValueError:
+                    # If ID is not numeric, fallback to original title-based number
+                    pass 
 
             return {'chapters': chapters, 'series_info': series_info, 'tracking_type': tracking_type}
 
