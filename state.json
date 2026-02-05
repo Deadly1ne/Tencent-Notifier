@@ -1,11 +1,11 @@
 {
     "https://ac.qq.com/Comic/comicInfo/id/657037": {
-        "last_chapter_number": 24.0,
-        "tracking_type": "number"
+        "last_chapter_number": 131168.0,
+        "tracking_type": "id"
     },
     "https://ac.qq.com/Comic/comicInfo/id/657286": {
-        "last_chapter_number": 17.0,
-        "tracking_type": "number"
+        "last_chapter_number": 132189.0,
+        "tracking_type": "id"
     },
     "https://ac.qq.com/Comic/comicInfo/id/657223": {
         "last_chapter_number": 131068.0,
@@ -15,8 +15,8 @@
         "last_chapter_number": 126703.0
     },
     "https://ac.qq.com/Comic/comicInfo/id/656989": {
-        "last_chapter_number": 24.0,
-        "tracking_type": "number"
+        "last_chapter_number": 131408.0,
+        "tracking_type": "id"
     },
     "https://ac.qq.com/Comic/comicInfo/id/657167": {
         "last_chapter_number": 129284.0,
@@ -27,39 +27,47 @@
         "tracking_type": "id"
     },
     "https://ac.qq.com/Comic/comicInfo/id/652765": {
-        "last_chapter_number": 248.0,
-        "tracking_type": "number"
+        "last_chapter_number": 131538.0,
+        "tracking_type": "id"
     },
     "https://ac.qq.com/Comic/comicInfo/id/650464": {
-        "last_chapter_number": 493.0,
-        "tracking_type": "number"
+        "last_chapter_number": 131626.0,
+        "tracking_type": "id"
     },
     "https://ac.qq.com/Comic/comicInfo/id/657154": {
-        "last_chapter_number": 25.0,
-        "tracking_type": "number"
+        "last_chapter_number": 129872.0,
+        "tracking_type": "id"
     },
     "https://ac.qq.com/Comic/comicInfo/id/657217": {
-        "last_chapter_number": 10.0,
-        "tracking_type": "number"
+        "last_chapter_number": 131497.0,
+        "tracking_type": "id"
     },
     "https://ac.qq.com/Comic/comicInfo/id/533395": {
-        "last_chapter_number": 2024.0,
-        "tracking_type": "number"
+        "last_chapter_number": 132141.0,
+        "tracking_type": "id"
     },
     "https://ac.qq.com/Comic/comicInfo/id/657384": {
-        "last_chapter_number": 8.0,
-        "tracking_type": "number"
+        "last_chapter_number": 132348.0,
+        "tracking_type": "id"
     },
     "https://ac.qq.com/Comic/comicInfo/id/657352": {
         "last_chapter_number": 130730.0,
         "tracking_type": "id"
     },
     "https://ac.qq.com/Comic/comicInfo/id/657385": {
-        "last_chapter_number": 8.0,
-        "tracking_type": "number"
+        "last_chapter_number": 132355.0,
+        "tracking_type": "id"
     },
     "https://ac.qq.com/Comic/comicInfo/id/657387": {
-        "last_chapter_number": 8.0,
-        "tracking_type": "number"
+        "last_chapter_number": 132318.0,
+        "tracking_type": "id"
+    },
+    "https://ac.qq.com/Comic/comicInfo/id/657389": {
+        "last_chapter_number": 132377.0,
+        "tracking_type": "id"
+    },
+    "https://ac.qq.com/Comic/comicInfo/id/657388": {
+        "last_chapter_number": 132353.0,
+        "tracking_type": "id"
     }
 }
