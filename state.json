@@ -41,5 +41,9 @@
     "https://ac.qq.com/Comic/comicInfo/id/657217": {
         "last_chapter_number": 10.0,
         "tracking_type": "number"
+    },
+    "https://ac.qq.com/Comic/comicInfo/id/533395": {
+        "last_chapter_number": 2024.0,
+        "tracking_type": "number"
     }
 }
