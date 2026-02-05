@@ -45,5 +45,21 @@
     "https://ac.qq.com/Comic/comicInfo/id/533395": {
         "last_chapter_number": 2024.0,
         "tracking_type": "number"
+    },
+    "https://ac.qq.com/Comic/comicInfo/id/657384": {
+        "last_chapter_number": 8.0,
+        "tracking_type": "number"
+    },
+    "https://ac.qq.com/Comic/comicInfo/id/657352": {
+        "last_chapter_number": 130730.0,
+        "tracking_type": "id"
+    },
+    "https://ac.qq.com/Comic/comicInfo/id/657385": {
+        "last_chapter_number": 8.0,
+        "tracking_type": "number"
+    },
+    "https://ac.qq.com/Comic/comicInfo/id/657387": {
+        "last_chapter_number": 8.0,
+        "tracking_type": "number"
     }
 }
