@@ -4,7 +4,7 @@ on:
   schedule:
     - cron: '*/30 * * * *'  # Every 30 minutes
     - cron: '1 16 * * *'    # 9:31 PM IST (16:01 UTC)
-    - cron: '0 22 * * *'    # 3:30 AM IST (22:00 UTC)
+    - cron: '1 22 * * *'    # 3:31 AM IST (22:01 UTC)
   workflow_dispatch:        # Allow manual trigger
 
 jobs:
